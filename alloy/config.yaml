@@ -1,6 +1,6 @@
 name: "Alloy"
 description: "Send metrics & logs to Loki instance"
-version: "0.1.0"
+version: "0.1.1"
 slug: "alloy"
 init: false
 arch:

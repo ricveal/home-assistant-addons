@@ -8,7 +8,7 @@ loki.process "alloy" {
   forward_to = [loki.write.local.receiver]
   stage.static_labels {
     values = {
-      instance = env("INSTANCE_NAME"),
+      "instance" = env("INSTANCE_NAME"),
       "job" = "alloy",
       "hostname" = constants.hostname,
     }
@@ -37,13 +37,13 @@ loki.process "homeassistant" {
 
 loki.write "local" {
   endpoint {
-    url = env("LOKI_URL"),
+    url = env("LOKI_URL")
     tls_config {
       insecure_skip_verify = env("VERIFY_LOKI_SSL")
     }
     basic_auth {
-      username = env("LOKI_USERNAME"),
-      password = env("LOKI_PASSWORD"),
+      username = env("LOKI_USERNAME")
+      password = env("LOKI_PASSWORD")
     }
   }
 }
