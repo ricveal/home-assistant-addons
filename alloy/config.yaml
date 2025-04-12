@@ -20,7 +20,6 @@ schema:
   loki_username: str
   loki_password: str
   log_level: list(debug|info|warn|error)
-homeassistant_api: false
 map:
   - homeassistant_config
 image: "ghcr.io/ricveal/hass-addon-alloy-{arch}"
