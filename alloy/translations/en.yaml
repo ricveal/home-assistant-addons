@@ -1,0 +1,15 @@
+configuration:
+  instance_name:
+    name: Instance Name
+  job_name:
+    name: Job Name
+  loki_url:
+    name: Loki URL
+  loki_username:
+    name: Loki Username
+  loki_password:
+    name: Loki Password
+  verify_loki_ssl:
+    name: Do you want to verify server certificates?
+  log_level:
+    name: Log Level

@@ -1,0 +1,21 @@
+#!/usr/bin/with-contenv bashio
+
+# ==============================================================================
+# Start the alloy service
+# s6-overlay docs: https://github.com/just-containers/s6-overlay
+# ==============================================================================
+export INSTANCE_NAME=$(bashio::config 'instance_name')
+export JOB_NAME=$(bashio::config 'job_name')
+export LOKI_URL=$(bashio::config 'loki_url')
+export LOKI_USERNAME=$(bashio::config 'loki_username')
+export LOKI_PASSWORD=$(bashio::config 'loki_password')
+export VERIFY_LOKI_SSL=$(bashio::config 'verify_loki_ssl')
+export LOG_LEVEL=$(bashio::config 'log_level')
+export ALLOY_DEPLOY_MODE=hass-addon-alloy
+
+CONFIG_FILE="/config.alloy"
+if bashio::fs.file_exists "/config/config.alloy"; then
+  CONFIG_FILE="/config/config.alloy"
+fi
+
+exec /usr/bin/grafana-alloy run --disable-reporting --storage.path=/config $CONFIG_FILE

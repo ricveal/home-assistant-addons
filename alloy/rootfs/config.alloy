@@ -1,0 +1,49 @@
+logging {
+  level    = env("LOG_LEVEL")
+  format   = "logfmt"
+  write_to = [loki.process.alloy.receiver]
+}
+
+loki.process "alloy" {
+  forward_to = [loki.write.local.receiver]
+  stage.static_labels {
+    values = {
+      instance = env("INSTANCE_NAME"),
+      "job" = "alloy",
+      "hostname" = constants.hostname,
+    }
+  }
+}
+
+loki.source.file "homeassistant" {
+  forward_to = [loki.process.homeassistant.receiver]
+  targets = [
+    {
+      "__path__" = "/homeassistant/home-assistant.log",
+      "instance" = env("INSTANCE_NAME"),
+      "job" = env("JOB_NAME"),
+      "hostname" = constants.hostname,
+    },
+  ]
+}
+
+loki.process "homeassistant" {
+  forward_to = [loki.write.local.receiver]
+  stage.multiline {
+    firstline = "^\\d{4}-\\d{2}-\\d{2} \\d{1,2}:\\d{2}:\\d{2}\\.\\d{3} "
+    max_lines = 1000
+  }
+}
+
+loki.write "local" {
+  endpoint {
+    url = env("LOKI_URL"),
+    tls_config {
+      insecure_skip_verify = env("VERIFY_LOKI_SSL")
+    }
+    basic_auth {
+      username = env("LOKI_USERNAME"),
+      password = env("LOKI_PASSWORD"),
+    }
+  }
+}
