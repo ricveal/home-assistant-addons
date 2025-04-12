@@ -1,5 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+# 0.3.1 
+
+- Fix permissions
+
 # 0.3.0
 
 - Go back to processing of log file because alpine images does not provide libsystemd-dev to work with journalctl
