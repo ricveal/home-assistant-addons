@@ -1,5 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+# 0.2.1 
+
+- Modify run command to include JOURNAL_PATH
+
 # 0.2.0 
 
 - Use journalctl instead of log file
