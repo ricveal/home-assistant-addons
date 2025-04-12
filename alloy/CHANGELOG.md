@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 0.1.3 
+
+- Update description
+- Remove unnecessary HA API access
+- Update CI pipelines
+
 ## 0.1.2
 
 - Remove flag to configure SSL verification
