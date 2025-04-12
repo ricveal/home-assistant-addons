@@ -1,5 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+# 0.2.0 
+
+- Use journalctl instead of log file
+
 ## 0.1.3 
 
 - Update description

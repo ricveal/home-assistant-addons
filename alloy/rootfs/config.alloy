@@ -9,29 +9,38 @@ loki.process "alloy" {
   stage.static_labels {
     values = {
       "instance" = env("INSTANCE_NAME"),
-      "job" = "alloy",
+      "job" = "alloy-homeassistant",
       "hostname" = constants.hostname,
     }
   }
 }
 
-loki.source.file "homeassistant" {
-  forward_to = [loki.process.homeassistant.receiver]
-  targets = [
-    {
-      "__path__" = "/homeassistant/home-assistant.log",
-      "instance" = env("INSTANCE_NAME"),
-      "job" = env("JOB_NAME"),
-      "hostname" = constants.hostname,
-    },
-  ]
+loki.relabel "journal" {
+  forward_to = []
+
+  rule {
+    source_labels = ["__journal__systemd_unit"]
+    target_label  = "unit"
+  }
+
+  rule {
+    source_labels = ["__journal__hostname"]
+    target_label  = "nodename"
+  }
+
+  rule {
+    source_labels = ["__journal_container_name"]
+    target_label  = "container_name"
+  }
 }
 
-loki.process "homeassistant" {
-  forward_to = [loki.write.local.receiver]
-  stage.multiline {
-    firstline = "^\\d{4}-\\d{2}-\\d{2} \\d{1,2}:\\d{2}:\\d{2}\\.\\d{3} "
-    max_lines = 1000
+loki.source.journal "read"  {
+  forward_to    = [loki.write.local.receiver]
+  relabel_rules = loki.relabel.journal.rules
+  labels        = {
+    "instance" = env("INSTANCE_NAME"),
+    "job" = env("JOB_NAME"),
+    "hostname" = constants.hostname,
   }
 }
 
