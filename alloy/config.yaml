@@ -1,6 +1,6 @@
 name: "Alloy"
 description: "Send metrics & logs to Loki instance"
-version: "0.1.1"
+version: "0.1.2"
 slug: "alloy"
 init: false
 arch:
@@ -12,7 +12,6 @@ options:
   loki_url: null
   loki_username: null
   loki_password: null
-  verify_loki_ssl: false
   log_level: info
 schema:
   instance_name: str?
@@ -20,7 +19,6 @@ schema:
   loki_url: str
   loki_username: str
   loki_password: str
-  verify_loki_ssl: bool?
   log_level: list(debug|info|warn|error)
 homeassistant_api: true
 map:

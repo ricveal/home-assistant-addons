@@ -9,7 +9,6 @@ export JOB_NAME=$(bashio::config 'job_name')
 export LOKI_URL=$(bashio::config 'loki_url')
 export LOKI_USERNAME=$(bashio::config 'loki_username')
 export LOKI_PASSWORD=$(bashio::config 'loki_password')
-export VERIFY_LOKI_SSL=$(bashio::config 'verify_loki_ssl')
 export LOG_LEVEL=$(bashio::config 'log_level')
 export ALLOY_DEPLOY_MODE=hass-addon-alloy
 

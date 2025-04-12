@@ -39,7 +39,7 @@ loki.write "local" {
   endpoint {
     url = env("LOKI_URL")
     tls_config {
-      insecure_skip_verify = env("VERIFY_LOKI_SSL")
+      insecure_skip_verify = true
     }
     basic_auth {
       username = env("LOKI_USERNAME")
