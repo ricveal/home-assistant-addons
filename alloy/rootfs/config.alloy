@@ -34,7 +34,7 @@ loki.relabel "journal" {
   }
 }
 
-loki.source.journal "read"  {
+loki.source.journal "read" {
   forward_to    = [loki.write.local.receiver]
   relabel_rules = loki.relabel.journal.rules
   labels        = {
