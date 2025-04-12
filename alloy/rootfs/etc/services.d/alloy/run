@@ -17,11 +17,4 @@ if bashio::fs.file_exists "/config/config.alloy"; then
   CONFIG_FILE="/config/config.alloy"
 fi
 
-JOURNAL_PATH='/var/log/journal'
-if ! bashio::fs.directory_exists "${JOURNAL_PATH}" || [ -z "$(ls -A ${JOURNAL_PATH})" ]; then
-    bashio::log.info "No journal at ${JOURNAL_PATH}, looking for journal in /run/log/journal instead"
-    JOURNAL_PATH='/run/log/journal'
-fi
-export "JOURNAL_PATH=${JOURNAL_PATH}"
-
 exec /usr/bin/grafana-alloy run --disable-reporting --storage.path=/config $CONFIG_FILE
