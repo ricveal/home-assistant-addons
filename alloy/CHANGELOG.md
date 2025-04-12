@@ -1,30 +1,34 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
-# 0.3.4 
+## 0.3.5 
 
 - Fix invalid regex expression
 
-# 0.3.3 
+## 0.3.4 
+
+- Fix invalid regex expression
+
+## 0.3.3 
 
 - Fix invalid comment
 
-# 0.3.2 
+## 0.3.2 
 
 - Add log parser
 
-# 0.3.1 
+## 0.3.1 
 
 - Fix permissions
 
-# 0.3.0
+## 0.3.0
 
 - Go back to processing of log file because alpine images does not provide libsystemd-dev to work with journalctl
 
-# 0.2.1 
+## 0.2.1 
 
 - Modify run command to include JOURNAL_PATH
 
-# 0.2.0 
+## 0.2.0 
 
 - Use journalctl instead of log file
 
